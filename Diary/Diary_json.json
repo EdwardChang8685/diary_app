@@ -1,0 +1,20 @@
+{
+  "return_code": 0,
+  "status": 0,
+  "error": null,
+  "message": null,
+  "data": {
+    "diaries": [
+      {
+        "id": 1,
+        "title": "Fitbit 與 Health2Sync 合作 協助北亞地區用戶的糖尿病管理",
+        "content": "Fitbit (NYSE：FIT) 與 Health2Sync慧康生活科技今日宣布，Fitbit 的健康、睡眠與健身數據，現已可與Health2Sync 應用程式智抗糖App(台灣和日本第一名的糖尿病管理應用程式整合，協助台灣和日本36 萬名 智抗糖 App使用者有效管理自身的糖尿病。在用戶同意的情況下，透過Fitbit 數據與智抗糖 App的整合，用戶將可以把 Fitbit 裝置內的資料，包含心率、睡眠、身體活動及最近的血糖數據（顯示指數是否超過、低於或落在健康範圍之內），同步至智抗糖 App，經證明，Fitbit裝置可協助使用者建立長久的生活習慣（例如增加使用者的體能活動和減輕體重[1]），以管理及降低第2型糖尿病的風險。將Fitbit資料同步至智抗糖App，能提供智抗糖使用者更全方位的健康數據，協助使用者選擇健康的生活方式，進而有效地管理自身的病況。身為穿戴式睡眠追蹤的領導品牌，Fitbit 也一直致力於改善用戶的睡眠品質。根據 Fitbit 對 46個國家匿名追蹤的數據顯示，亞洲有許多民眾為睡眠問題所苦，台灣以及日本分別排名 38 和 41，顯示睡眠問題較他國來得嚴重，由於血糖表現與睡眠品質息息相關，有效追蹤睡眠狀況能為第 2 型糖尿病患者的整體健康帶來更多正面效益[2]，Fitbit持續追蹤睡眠狀況並將這些數據納入智抗糖App 的服務，對這些國家的民眾而言是一大福音。"
+      },
+      {
+        "id": 2,
+        "title": "Latest version of Health2Sync app features CGM data",
+        "content": "Taiwan-based diabetes management app Health2Sync has launched the latest version of its mobile app for about 200,000 users in Japan that now integrates continuous glucose monitoring data from the Abbott FreeStyle LibreLink mobile app. This data integration, said Health2Sync in a statement, will enable comprehensive health management for people with diabetes. It will allow them to view data on their diet, weight, and blood pressure, along with CGM data on their Health2Sync app. The app also displays exercise data captured from Fitbit. This in turn will help them understand how to make timely adjustments to their nutrition and lifestyle choices to enhance blood glucose control, as well as help them change their behaviour toward treatment. The latest app version is currently available in Japan with a plan to expand it to other locations across Asia in the future."
+      }
+    ]
+  }
+}
