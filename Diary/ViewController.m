@@ -6,6 +6,9 @@
 //
 
 #import "ViewController.h"
+#import "DiaryModel.h"
+#import "Mantle.h"
+#import "DiaryDetailViewController.h"
 
 @interface ViewController ()
 
@@ -16,8 +19,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self cofigureTableview];
-    self.content = @[@"1", @"2"];
-    [self loadJsonData];
+    [self configureNavigation];
+    [self loadJSONData];
+    
+}
+
+- (void)configureNavigation
+
+{
+    self.title = @"Note";
+    
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+                                       target: self
+                                       action: @selector(createNewDiary:)];
+    
+    self.navigationItem.rightBarButtonItem = editButton;
+    
+}
+
+- (void)createNewDiary:(id)sender
+{
+    DiaryDetailViewController *vc2 = [[DiaryDetailViewController alloc] init];
+    [self presentViewController: vc2
+                       animated: YES
+                     completion: nil];
 }
 
 - (void)cofigureTableview
@@ -28,7 +55,7 @@
     [self.view addSubview: self.tableView];
 }
 
-- (void)loadJsonData
+- (void)loadJSONData
 {
     NSString *filePath = [[NSBundle mainBundle] pathForResource: @"Diary_json" ofType: @"json"];
     // Retrieve local JSON file called example.json
@@ -46,19 +73,32 @@
     if ([jsonObject isKindOfClass: [NSDictionary class]])
     {
         NSDictionary *dict = (NSDictionary *)jsonObject;
-        NSLog(@"JSON Dictionary = %@", dict);
+        self.dict = dict;
+        [self mantleModel];
     }
     else
     {
         NSLog(@"Error while Deserializing the JSON data.");
     }
+    
 }
+
+- (void) mantleModel
+{
+    NSError *error;
+    Diary *model = [MTLJSONAdapter modelOfClass: Diary.class
+                             fromJSONDictionary: self.dict
+                                          error: &error];
+    
+    self.diaries = model.diaries;
+    }
 
 # pragma mark - TableView Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _content.count;
+    return self.diaries.count;
 }
+
 
 # pragma mark - TableView DataSource
 
@@ -70,8 +110,23 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: CellIdentifier];
     }
-    cell.textLabel.text =  [_content objectAtIndex: indexPath.row];
+    
+    cell.textLabel.text = _diaries[indexPath.row].title;
+    cell.detailTextLabel.numberOfLines = 3;
+    cell.detailTextLabel.text = _diaries[indexPath.row].content;
     return cell;
+}
+
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //        [self.diaries removeObject: indexPath.row];
+    }
 }
 
 @end

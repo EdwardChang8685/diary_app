@@ -6,11 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryModel.h"
 
 @interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *content;
+@property (strong, nonatomic) NSMutableArray<DiaryInfo *> *diaries;
+
+@property (strong, nonatomic) NSDictionary *dict;
 
 @end
