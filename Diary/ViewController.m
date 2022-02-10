@@ -19,21 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self cofigureTableview];
-    [self configureNavigation];
+    [self configureNavigation: @"Note"];
     [self loadJSONData];
     
 }
 
-- (void)configureNavigation
+- (void)configureNavigation:(NSString*) title
 
 {
-    self.title = @"Note";
+    self.title = title;
     
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
-                                       initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
-                                       target: self
-                                       action: @selector(createNewDiary:)];
+                                   initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+                                   target: self
+                                   action: @selector(createNewDiary:)];
     
     self.navigationItem.rightBarButtonItem = editButton;
     
@@ -41,8 +41,9 @@
 
 - (void)createNewDiary:(id)sender
 {
-    DiaryDetailViewController *vc2 = [[DiaryDetailViewController alloc] init];
-    [self presentViewController: vc2
+    DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
+    UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
+    [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];
 }
@@ -91,16 +92,16 @@
                                           error: &error];
     
     self.diaries = model.diaries;
-    }
+}
 
 # pragma mark - TableView Delegate
+
+
+# pragma mark - TableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.diaries.count;
 }
-
-
-# pragma mark - TableView DataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -117,15 +118,15 @@
     return cell;
 }
 
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        //        [self.diaries removeObject: indexPath.row];
+        [self.diaries removeObject: indexPath];
     }
 }
 

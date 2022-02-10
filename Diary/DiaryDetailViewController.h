@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DiaryDetailViewController : UIViewController
+@interface DiaryDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @end
 

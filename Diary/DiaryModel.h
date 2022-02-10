@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DiaryInfo : MTLModel<MTLJSONSerializing>
 
-@property (nonatomic, assign) NSNumber *diaryID;
+@property (nonatomic, retain) NSNumber *diaryID;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *content;
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Diary : MTLModel<MTLJSONSerializing>
 
-@property (nonatomic, retain) DiaryInfo *diaries;
+@property (nonatomic, retain) NSMutableArray<DiaryInfo *> *diaries;
 
 @end
 
