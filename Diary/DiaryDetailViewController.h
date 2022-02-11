@@ -6,10 +6,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DiaryDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+
+@property (nonatomic, strong) UITextField *textField;
+
+@property (nonatomic, strong) UITextView *textView;
+
+@property (nonatomic, strong) DiaryInfo *diary;
 
 @end
 

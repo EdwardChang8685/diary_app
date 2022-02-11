@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DiaryCell : UITableViewCell
 
-@property (nonatomic) UILabel *titleLabel;
-@property (nonatomic) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
 - (void)configureCell: (DiaryInfo*) model;
 

@@ -19,6 +19,11 @@
     // key for model name, value for JSON key
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 @end
 
 
@@ -34,6 +39,11 @@
 + (NSValueTransformer *)diariesJSONTransformer {
     
     return [MTLJSONAdapter arrayTransformerWithModelClass:[DiaryInfo class]];
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 @end

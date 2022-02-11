@@ -25,7 +25,7 @@
         
         [[self.titleLabel.topAnchor constraintEqualToAnchor: self.contentView.topAnchor constant:8] setActive:YES];
         [[self.titleLabel.leftAnchor constraintEqualToAnchor: self.contentView.leftAnchor constant:8] setActive:YES];
-        [[self.titleLabel.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:8] setActive:YES];
+        [[self.titleLabel.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:-8] setActive:YES];
         [[self.titleLabel.heightAnchor constraintEqualToConstant:30] setActive:YES];
         
         [self.contentLabel setTranslatesAutoresizingMaskIntoConstraints: NO];

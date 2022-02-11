@@ -11,6 +11,8 @@
 #import "DiaryDetailViewController.h"
 #import "DiaryCell.h"
 
+#define userDefaultDiaries @"userDefaultDiaries"
+
 @interface ViewController ()
 
 @end
@@ -21,8 +23,26 @@
     [super viewDidLoad];
     [self cofigureTableview];
     [self configureNavigation: @"Note"];
-    [self loadJSONData];
-    
+    [self loadDiariesFromUserDefault];
+//    [self saveDiariesToUserDefault];
+    [self addObserver];
+}
+
+- (void)addObserver {
+    NSKeyValueObservingOptions option = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
+    [self addObserver: self
+                   forKeyPath: @"diaries"
+                      options: option
+                      context: NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    NSLog(@"Diaries did edited");
+    [self.tableView reloadData];
 }
 
 - (void)configureNavigation:(NSString*) title
@@ -30,15 +50,14 @@
 {
     self.title = title;
     
-    
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+                                   initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
                                    target: self
                                    action: @selector(createNewDiary:)];
     
     self.navigationItem.rightBarButtonItem = editButton;
-    
 }
+
 
 - (void)createNewDiary:(id)sender
 {
@@ -76,16 +95,15 @@
     {
         NSDictionary *dict = (NSDictionary *)jsonObject;
         self.dict = dict;
-        [self mantleModel];
+        [self packageJsonToDataModel];
     }
     else
     {
         NSLog(@"Error while Deserializing the JSON data.");
     }
-    
 }
 
-- (void) mantleModel
+- (void) packageJsonToDataModel
 {
     NSError *error;
     Diary *model = [MTLJSONAdapter modelOfClass: Diary.class
@@ -94,11 +112,51 @@
     
     self.diaries = model.diaries;
 }
+- (void)loadDiariesFromUserDefault {
+    
+    NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
+    
+    if (diariesData) {
+
+        NSError *unarchivedError = nil;
+        NSMutableArray<DiaryInfo *> *unarchiveData = [NSKeyedUnarchiver unarchivedObjectOfClass: DiaryInfo.class
+                                                            fromData: diariesData
+                                                               error: &unarchivedError];
+        self.diaries = unarchiveData;
+        NSLog(@"Load data From UserDefault");
+        NSLog(@"unarchive error: %@",unarchivedError);
+        NSLog(@"%@",diariesData);
+
+    } else {
+        [self loadJSONData];
+        NSLog(@"Load data From Json Data");
+    }
+}
+
+- (void) saveDiariesToUserDefault {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSError *archivedError = nil;
+    NSData *archiveData = [NSKeyedArchiver archivedDataWithRootObject: self.diaries
+                                               requiringSecureCoding: NO
+                                                               error: &archivedError];
+    [defaults setObject: archiveData forKey: userDefaultDiaries];
+    [defaults synchronize];
+    NSLog(@"unarchive error: %@",archivedError);
+}
+
 
 # pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
+    UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
+    
+    newDiaryController.diary = self.diaries[indexPath.row];
+    
+    [self presentViewController: navConrtroller
+                       animated: YES
+                     completion: nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {

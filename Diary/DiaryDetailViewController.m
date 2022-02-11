@@ -15,7 +15,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     [self configureNavigation];
     [self setTextField];
@@ -30,7 +29,7 @@
                                    initWithTitle: @"Done"
                                    style: UIBarButtonItemStylePlain 
                                    target: self
-                                   action: @selector(completeEdition:)];
+                                   action: @selector(dismissVC)];
     
     
     self.navigationItem.rightBarButtonItem = doneButton;
@@ -53,27 +52,32 @@
 }
 
 - (void)setTextField {
-    UITextField *textField = [[UITextField alloc] init];
-    [self.view addSubview: textField];
-    textField.delegate = self;
-    textField.text = @"Input Note Title Here!";
-    [self.view setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [[textField.topAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.topAnchor constant:30] setActive:YES];
-    [[textField.leadingAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.leadingAnchor constant:30] setActive:YES];
-    [[textField.trailingAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.trailingAnchor constant:30] setActive:YES];
-    [[textField.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
+    
+    self.textField = [[UITextField alloc]init];
+    [self.view addSubview: self.textField];
+    
+    self.textField.delegate = self;
+    self.textField.text = @"Input Note Title Here!";
+    self.textField.backgroundColor = [UIColor redColor];
+    [self.textField setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [[self.textField.topAnchor constraintEqualToAnchor: self.view.topAnchor constant:30] setActive:YES];
+    [[self.textField.leadingAnchor constraintGreaterThanOrEqualToAnchor: self.view.leadingAnchor constant:30] setActive:YES];
+    [[self.textField.trailingAnchor constraintLessThanOrEqualToAnchor: self.view.trailingAnchor constant:30] setActive:YES];
+    [[self.textField.heightAnchor constraintEqualToConstant:30] setActive: YES];
 }
 
 - (void)setTextView {
-    UITextView *textView = [[UITextView alloc]init];
-    [self.view addSubview: textView];
-    textView.delegate = self;
-    textView.text = @"Input Note Title Here!";
-    [self.view setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [[textView.topAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.topAnchor constant:30] setActive:YES];
-    [[textView.leadingAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.leadingAnchor constant:30] setActive:YES];
-    [[textView.trailingAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.trailingAnchor constant:30] setActive:YES];
-    [[textView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
+    self.textView = [[UITextView alloc]init];
+    [self.view addSubview: self.textView];
+    
+    self.textView.delegate = self;
+    self.textView.text = @"Input Note Title Here!";
+    
+    [self.textView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [[self.textView.topAnchor constraintEqualToAnchor: self.textField.bottomAnchor constant:30] setActive:YES];
+    [[self.textView.leadingAnchor constraintEqualToAnchor: self.view.leadingAnchor constant:20] setActive:YES];
+    [[self.textView.trailingAnchor constraintEqualToAnchor: self.view.trailingAnchor constant:20] setActive:YES];
+    [[self.textView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
 }
 
 @end
