@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "DiaryModel.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 

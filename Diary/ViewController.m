@@ -126,7 +126,8 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.diaries removeObject: indexPath];
+        [self.diaries removeObjectAtIndex: indexPath.row];
+        [tableView reloadData];
     }
 }
 
