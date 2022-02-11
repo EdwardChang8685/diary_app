@@ -9,6 +9,7 @@
 #import "DiaryModel.h"
 #import "Mantle.h"
 #import "DiaryDetailViewController.h"
+#import "DiaryCell.h"
 
 @interface ViewController ()
 
@@ -96,6 +97,17 @@
 
 # pragma mark - TableView Delegate
 
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
 
 # pragma mark - TableView DataSource
 
@@ -106,15 +118,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
+    
+    DiaryCell *cell = (DiaryCell *) [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: CellIdentifier];
+        cell = [[DiaryCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: CellIdentifier];
     }
     
-    cell.textLabel.text = _diaries[indexPath.row].title;
-    cell.detailTextLabel.numberOfLines = 3;
-    cell.detailTextLabel.text = _diaries[indexPath.row].content;
+    [cell configureCell: self.diaries[indexPath.row]];
+    
     return cell;
 }
 

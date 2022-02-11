@@ -53,7 +53,7 @@
 }
 
 - (void)setTextField {
-    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectZero];
+    UITextField *textField = [[UITextField alloc] init];
     [self.view addSubview: textField];
     textField.delegate = self;
     textField.text = @"Input Note Title Here!";
@@ -65,7 +65,7 @@
 }
 
 - (void)setTextView {
-    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectZero];
+    UITextView *textView = [[UITextView alloc]init];
     [self.view addSubview: textView];
     textView.delegate = self;
     textView.text = @"Input Note Title Here!";
