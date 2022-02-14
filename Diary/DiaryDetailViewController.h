@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol DiaryDetailVCDelegate <NSObject>
+- (void) editDiaryInfo:(DiaryInfo*)diary andAtRow:(NSIndexPath*) indexpath;
+@end
 
 @interface DiaryDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
@@ -19,9 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) DiaryInfo *diary;
 
+@property (nonatomic, strong) NSIndexPath *indexpath;
+
 @property (nonatomic, assign) BOOL isCreatMode;
 
-@property (nonatomic, copy, nonnull) DiaryInfo * (^Block)(DiaryInfo*);
+@property (nonatomic, weak) id <DiaryDetailVCDelegate> delegate;
+
+@property (nonatomic, copy, nonnull) void (^editBlock)(DiaryInfo*);
+
 @end
+
+
 
 NS_ASSUME_NONNULL_END

@@ -24,16 +24,15 @@
     [self cofigureTableview];
     [self configureNavigation: @"Note"];
     [self loadDiariesFromUserDefault];
-    [self saveDiariesToUserDefault];
     [self addObserver];
 }
 
 - (void)addObserver {
     NSKeyValueObservingOptions option = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
     [self addObserver: self
-                   forKeyPath: @"diaries"
-                      options: option
-                      context: NULL];
+           forKeyPath: @"diaries"
+              options: option
+              context: NULL];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -64,12 +63,15 @@
 {
     DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController: newDiaryController];
+    newDiaryController.delegate = self;
     
-//    newDiaryController.editBlock(<#DiaryInfo * _Nonnull#>)
-//    self.diaries[]
     [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];
+}
+
+- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
+    self.diaries[indexpath.row] = diary;
 }
 
 - (void)cofigureTableview
@@ -119,33 +121,31 @@
 - (void)loadDiariesFromUserDefault {
     
     NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
-    NSString *myString = [[NSString alloc] initWithData:diariesData encoding:NSUTF8StringEncoding];
     
-    if (diariesData) {
-        NSLog(@"String: %@", myString);
-        NSError *unarchivedError = nil;
-//        NSSet *set = [NSSet setWithArray:@[NSArray.class, NSMutableArray.class,  [DiaryInfo class]]];
-        NSMutableArray<DiaryInfo*> *unarchiveArray =(NSMutableArray<DiaryInfo*> *) [NSKeyedUnarchiver unarchivedObjectOfClass: [DiaryInfo class]
-                                                            fromData: diariesData
-                                                               error: &unarchivedError];
-        self.diaries = unarchiveArray;
-        
-        NSLog(@"Load data From UserDefault");
-        NSLog(@"unarchive error: %@",unarchivedError);
-        NSLog(@"%@", self.diaries);
+        if (diariesData) {
+            NSError *unarchivedError = nil;
+            NSSet *set = [NSSet setWithArray:@[NSMutableArray.class, [DiaryInfo class]]];
+            NSMutableArray<DiaryInfo*> *unarchiveArray = [NSKeyedUnarchiver unarchivedObjectOfClasses: set
+                                                                fromData: diariesData
+                                                                   error: &unarchivedError];
+            self.diaries = unarchiveArray;
 
-    } else {
-        [self loadJSONData];
-        NSLog(@"Load data From Json Data");
-    }
+            NSLog(@"Load data From UserDefault");
+            NSLog(@"unarchive error: %@",unarchivedError);
+    
+        } else {
+    [self loadJSONData];
+    [self saveDiariesToUserDefault];
+    NSLog(@"Load data From Json Data");
+        }
 }
 
 - (void) saveDiariesToUserDefault {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSError *archivedError = nil;
     NSData *archiveData = [NSKeyedArchiver archivedDataWithRootObject: self.diaries
-                                               requiringSecureCoding: NO
-                                                               error: &archivedError];
+                                                requiringSecureCoding: NO
+                                                                error: &archivedError];
     [defaults setObject: archiveData forKey: userDefaultDiaries];
     [defaults synchronize];
     NSLog(@"archive error: %@",archivedError);
@@ -160,6 +160,11 @@
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
     
     newDiaryController.diary = self.diaries[indexPath.row];
+//    newDiaryController.editBlock
+    newDiaryController.delegate = self;
+    
+//        self.diaries[indexPath.row] = diary;
+//    };
     
     [self presentViewController: navConrtroller
                        animated: YES

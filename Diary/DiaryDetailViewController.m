@@ -12,6 +12,7 @@
 @end
 
 @implementation DiaryDetailViewController
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +50,11 @@
 }
 
 - (void)completeEdition:(id)sender {
+    
+    self.diary.title = self.textField.text;
+    self.diary.content = self.textView.text;
+    [self.delegate editDiaryInfo:self.diary andAtRow:self.indexpath];
+//    self.editBlock(self.diary);
     
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
@@ -90,6 +96,10 @@
     }
 }
 
+-(void) dealloc {
+    NSLog(@"VC did dealloced");
+}
+
 # pragma mark - TableView Delegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -99,7 +109,5 @@
 - (void)textViewDidEndEditing:(UITextView *)textView {
     self.diary.content = textView.text;
 }
-
-
 
 @end

@@ -28,9 +28,9 @@
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     self = [super init];
     if (self) {
-        self.diaryID = [coder decodeObjectForKey:@"id"];
-        self.title = [coder decodeObjectForKey:@"title"];
-        self.content = [coder decodeObjectForKey:@"content"];
+        self.diaryID = [coder decodeObjectOfClass: [NSNumber class] forKey:@"id"];
+        self.title = [coder decodeObjectOfClass: [NSString class] forKey:@"title"];
+        self.content = [coder decodeObjectOfClass: [NSString class] forKey:@"content"];
 
     }
     return self;

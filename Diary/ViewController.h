@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryDetailViewController.h"
 #import "DiaryModel.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DiaryDetailVCDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
