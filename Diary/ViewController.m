@@ -24,7 +24,7 @@
     [self cofigureTableview];
     [self configureNavigation: @"Note"];
     [self loadDiariesFromUserDefault];
-//    [self saveDiariesToUserDefault];
+    [self saveDiariesToUserDefault];
     [self addObserver];
 }
 
@@ -42,6 +42,7 @@
                        context:(void *)context
 {
     NSLog(@"Diaries did edited");
+    [self saveDiariesToUserDefault];
     [self.tableView reloadData];
 }
 
@@ -62,7 +63,10 @@
 - (void)createNewDiary:(id)sender
 {
     DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
-    UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
+    UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController: newDiaryController];
+    
+//    newDiaryController.editBlock(<#DiaryInfo * _Nonnull#>)
+//    self.diaries[]
     [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];
@@ -115,17 +119,20 @@
 - (void)loadDiariesFromUserDefault {
     
     NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
+    NSString *myString = [[NSString alloc] initWithData:diariesData encoding:NSUTF8StringEncoding];
     
     if (diariesData) {
-
+        NSLog(@"String: %@", myString);
         NSError *unarchivedError = nil;
-        NSMutableArray<DiaryInfo *> *unarchiveData = [NSKeyedUnarchiver unarchivedObjectOfClass: DiaryInfo.class
+//        NSSet *set = [NSSet setWithArray:@[NSArray.class, NSMutableArray.class,  [DiaryInfo class]]];
+        NSMutableArray<DiaryInfo*> *unarchiveArray =(NSMutableArray<DiaryInfo*> *) [NSKeyedUnarchiver unarchivedObjectOfClass: [DiaryInfo class]
                                                             fromData: diariesData
                                                                error: &unarchivedError];
-        self.diaries = unarchiveData;
+        self.diaries = unarchiveArray;
+        
         NSLog(@"Load data From UserDefault");
         NSLog(@"unarchive error: %@",unarchivedError);
-        NSLog(@"%@",diariesData);
+        NSLog(@"%@", self.diaries);
 
     } else {
         [self loadJSONData];
@@ -141,7 +148,7 @@
                                                                error: &archivedError];
     [defaults setObject: archiveData forKey: userDefaultDiaries];
     [defaults synchronize];
-    NSLog(@"unarchive error: %@",archivedError);
+    NSLog(@"archive error: %@",archivedError);
 }
 
 
@@ -197,7 +204,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         [self.diaries removeObjectAtIndex: indexPath.row];
-        [tableView reloadData];
     }
 }
 

@@ -10,14 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface DiaryDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
-
+    
 @property (nonatomic, strong) UITextView *textView;
 
 @property (nonatomic, strong) DiaryInfo *diary;
 
+@property (nonatomic, assign) BOOL isCreatMode;
+
+@property (nonatomic, copy, nonnull) DiaryInfo * (^Block)(DiaryInfo*);
 @end
 
 NS_ASSUME_NONNULL_END
