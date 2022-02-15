@@ -63,16 +63,4 @@
     return YES;
 }
 
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
-    self = [super init];
-    if (self) {
-        self.diaries = [coder decodeObjectForKey:@"diaries"];
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.diaries forKey:@"diaries"];
-}
-
 @end

@@ -39,8 +39,7 @@
     return self;
 }
 
-- (void)configureCell: (DiaryInfo*) model
-{
+- (void)configureCell: (DiaryInfo*) model {
     self.titleLabel.text = model.title;
     self.contentLabel.numberOfLines = 3;
     self.contentLabel.text = model.content;

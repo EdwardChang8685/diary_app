@@ -19,6 +19,8 @@
 
 @implementation ViewController
 
+    UITableView *tableView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self cofigureTableview];
@@ -80,7 +82,7 @@
     [self.view addSubview: self.tableView];
 }
 
-- (void)loadJSONData
+- (void)loadJsonData
 {
     NSString *filePath = [[NSBundle mainBundle] pathForResource: @"Diary_json" ofType: @"json"];
     // Retrieve local JSON file called example.json
@@ -128,7 +130,7 @@
         NSLog(@"unarchive error: %@",unarchivedError);
         
     } else {
-        [self loadJSONData];
+        [self loadJsonData];
         [self saveDiariesToUserDefault];
         NSLog(@"Load data From Json Data");
     }

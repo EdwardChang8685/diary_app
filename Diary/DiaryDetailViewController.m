@@ -109,12 +109,12 @@
 
 # pragma mark - TableView Delegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    self.diary.title = textField.text;
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    self.diary.content = textView.text;
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField{
+//    self.diary.title = textField.text;
+//}
+//
+//- (void)textViewDidChange:(UITextView *)textView {
+//    self.diary.content = textView.text;
+//}
 
 @end
