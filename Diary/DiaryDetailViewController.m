@@ -49,17 +49,16 @@
 }
 
 - (void)completeEdition:(id)sender {
+    
+    if(!self.diary) {
     DiaryInfo *diary = [[DiaryInfo alloc] init];
-    diary.diaryID = @1;
-    diary.title = self.textField.text;
-    diary.content = self.textView.text;
-    
-    self.diary = diary;
-    
-    NSLog(@"%@",self.textField.text);
-    NSLog(@"%@",self.textView.text);
-    NSLog(@"%@",self.diary.title);
-    NSLog(@"%@",self.diary.content);
+        diary.title = self.textField.text;
+        diary.content = self.textView.text;
+        self.diary = diary;
+    } else {
+        self.diary.title = self.textField.text;
+        self.diary.content = self.textView.text;
+    }
     
     if (self.indexpath) {
         [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
@@ -67,7 +66,6 @@
     } else {
         [self.delegate AddDiaryInfo: self.diary];
     }
-    //    self.editBlock(self.diary);
     
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
@@ -118,7 +116,5 @@
 - (void)textViewDidChange:(UITextView *)textView {
     self.diary.content = textView.text;
 }
-
-@synthesize delegate;
 
 @end

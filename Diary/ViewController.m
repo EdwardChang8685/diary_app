@@ -95,20 +95,16 @@
                      options: NSJSONReadingAllowFragments
                      error: &error];
     
-    if ([jsonObject isKindOfClass: [NSDictionary class]])
-    {
+    if ([jsonObject isKindOfClass: [NSDictionary class]]) {
         NSDictionary *dict = (NSDictionary *)jsonObject;
         self.dict = dict;
         [self packageJsonToDataModel];
-    }
-    else
-    {
+    } else {
         NSLog(@"Error while Deserializing the JSON data.");
     }
 }
 
-- (void) packageJsonToDataModel
-{
+- (void) packageJsonToDataModel {
     NSError *error;
     Diary *model = [MTLJSONAdapter modelOfClass: Diary.class
                              fromJSONDictionary: self.dict
@@ -116,6 +112,7 @@
     
     self.diaries = model.diaries;
 }
+
 - (void)loadDiariesFromUserDefault {
     
     NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
@@ -127,7 +124,6 @@
                                                                                          fromData: diariesData
                                                                                             error: &unarchivedError];
         self.diaries = unarchiveArray;
-        
         NSLog(@"Load data From UserDefault");
         NSLog(@"unarchive error: %@",unarchivedError);
         
@@ -152,30 +148,24 @@
 # pragma mark - DiaryDetailVCDelegate
 
 - (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
-    
-    //    [[self mutableArrayValueForKey:@"diaries"]];
+    [[self mutableArrayValueForKey:@"diaries"] replaceObjectAtIndex:indexpath.row withObject:diary];
     self.diaries[indexpath.row] = diary;
-    NSLog(@"%@",diary);
-    
 }
 
 - (void) AddDiaryInfo:(DiaryInfo*) diary {
-//    [self.diaries addObject: diary];
-    NSLog(@"%@",diary);
-        [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
+    [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
 }
 
 
 # pragma mark - TableView Delegate
 
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
     
     newDiaryController.diary = self.diaries[indexPath.row];
     newDiaryController.indexpath = indexPath;
-    //    newDiaryController.editBlock
     newDiaryController.delegate = self;
     
     [self presentViewController: navConrtroller
@@ -197,8 +187,7 @@
     return self.diaries.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cell";
     
     DiaryCell *cell = (DiaryCell *) [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
@@ -220,7 +209,6 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[self mutableArrayValueForKey:@"diaries"] removeObjectAtIndex: indexPath.row];
-        //        [_diaries removeObjectAtIndex: indexPath.row];
     }
 }
 
