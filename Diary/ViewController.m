@@ -28,7 +28,7 @@
 }
 
 - (void)addObserver {
-    NSKeyValueObservingOptions option = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
+    NSKeyValueObservingOptions option = NSKeyValueObservingOptionNew;
     [self addObserver: self
            forKeyPath: @"diaries"
               options: option
@@ -41,8 +41,9 @@
                        context:(void *)context
 {
     NSLog(@"Diaries did edited");
-    [self saveDiariesToUserDefault];
+    
     [self.tableView reloadData];
+    [self saveDiariesToUserDefault];
 }
 
 - (void)configureNavigation:(NSString*) title
@@ -70,9 +71,6 @@
                      completion: nil];
 }
 
-- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
-    self.diaries[indexpath.row] = diary;
-}
 
 - (void)cofigureTableview
 {
@@ -122,22 +120,22 @@
     
     NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
     
-        if (diariesData) {
-            NSError *unarchivedError = nil;
-            NSSet *set = [NSSet setWithArray:@[NSMutableArray.class, [DiaryInfo class]]];
-            NSMutableArray<DiaryInfo*> *unarchiveArray = [NSKeyedUnarchiver unarchivedObjectOfClasses: set
-                                                                fromData: diariesData
-                                                                   error: &unarchivedError];
-            self.diaries = unarchiveArray;
-
-            NSLog(@"Load data From UserDefault");
-            NSLog(@"unarchive error: %@",unarchivedError);
-    
-        } else {
-    [self loadJSONData];
-    [self saveDiariesToUserDefault];
-    NSLog(@"Load data From Json Data");
-        }
+    if (diariesData) {
+        NSError *unarchivedError = nil;
+        NSSet *set = [NSSet setWithArray:@[NSMutableArray.class, [DiaryInfo class]]];
+        NSMutableArray<DiaryInfo*> *unarchiveArray = [NSKeyedUnarchiver unarchivedObjectOfClasses: set
+                                                                                         fromData: diariesData
+                                                                                            error: &unarchivedError];
+        self.diaries = unarchiveArray;
+        
+        NSLog(@"Load data From UserDefault");
+        NSLog(@"unarchive error: %@",unarchivedError);
+        
+    } else {
+        [self loadJSONData];
+        [self saveDiariesToUserDefault];
+        NSLog(@"Load data From Json Data");
+    }
 }
 
 - (void) saveDiariesToUserDefault {
@@ -151,6 +149,22 @@
     NSLog(@"archive error: %@",archivedError);
 }
 
+# pragma mark - DiaryDetailVCDelegate
+
+- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
+    
+    //    [[self mutableArrayValueForKey:@"diaries"]];
+    self.diaries[indexpath.row] = diary;
+    NSLog(@"%@",diary);
+    
+}
+
+- (void) AddDiaryInfo:(DiaryInfo*) diary {
+//    [self.diaries addObject: diary];
+    NSLog(@"%@",diary);
+        [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
+}
+
 
 # pragma mark - TableView Delegate
 
@@ -160,11 +174,9 @@
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController:newDiaryController];
     
     newDiaryController.diary = self.diaries[indexPath.row];
-//    newDiaryController.editBlock
+    newDiaryController.indexpath = indexPath;
+    //    newDiaryController.editBlock
     newDiaryController.delegate = self;
-    
-//        self.diaries[indexPath.row] = diary;
-//    };
     
     [self presentViewController: navConrtroller
                        animated: YES
@@ -207,8 +219,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        [self.diaries removeObjectAtIndex: indexPath.row];
+        [[self mutableArrayValueForKey:@"diaries"] removeObjectAtIndex: indexPath.row];
+        //        [_diaries removeObjectAtIndex: indexPath.row];
     }
 }
 

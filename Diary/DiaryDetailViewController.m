@@ -12,7 +12,6 @@
 @end
 
 @implementation DiaryDetailViewController
-@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,9 +28,9 @@
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @"Done"
-                                   style: UIBarButtonItemStylePlain 
+                                   style: UIBarButtonItemStylePlain
                                    target: self
-                                   action: @selector(dismissVC)];
+                                   action: @selector(completeEdition:)];
     
     
     self.navigationItem.rightBarButtonItem = doneButton;
@@ -40,7 +39,7 @@
                                    initWithTitle: @"Back"
                                    style: UIBarButtonItemStylePlain
                                    target: self
-                                   action: @selector(completeEdition:)];
+                                   action: @selector(dismissVC)];
     
     self.navigationItem.leftBarButtonItem = backButton;
     
@@ -50,11 +49,25 @@
 }
 
 - (void)completeEdition:(id)sender {
+    DiaryInfo *diary = [[DiaryInfo alloc] init];
+    diary.diaryID = @1;
+    diary.title = self.textField.text;
+    diary.content = self.textView.text;
     
-    self.diary.title = self.textField.text;
-    self.diary.content = self.textView.text;
-    [self.delegate editDiaryInfo:self.diary andAtRow:self.indexpath];
-//    self.editBlock(self.diary);
+    self.diary = diary;
+    
+    NSLog(@"%@",self.textField.text);
+    NSLog(@"%@",self.textView.text);
+    NSLog(@"%@",self.diary.title);
+    NSLog(@"%@",self.diary.content);
+    
+    if (self.indexpath) {
+        [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
+        
+    } else {
+        [self.delegate AddDiaryInfo: self.diary];
+    }
+    //    self.editBlock(self.diary);
     
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
@@ -96,18 +109,16 @@
     }
 }
 
--(void) dealloc {
-    NSLog(@"VC did dealloced");
-}
-
 # pragma mark - TableView Delegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField{
     self.diary.title = textField.text;
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView {
+- (void)textViewDidChange:(UITextView *)textView {
     self.diary.content = textView.text;
 }
+
+@synthesize delegate;
 
 @end
