@@ -15,9 +15,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.titleLabel = [[UILabel alloc] init];
-        self.titleLabel.font = [UIFont fontWithName:@"Arial" size:16.0f];
+        self.titleLabel.font = [UIFont fontWithName:@"System" size:16.0f];
         self.contentLabel = [[UILabel alloc] init];
-        self.contentLabel.font = [UIFont fontWithName:@"Arial" size:12.0f];
+        self.contentLabel.font = [UIFont fontWithName:@"System" size:12.0f];
         [self.contentView addSubview: _titleLabel];
         [self.contentView addSubview: _contentLabel];
         

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
     
 @property (nonatomic, strong) UITextView *textView;
 
+@property (nonatomic, strong) UILabel *placeHolderLabel;
+
 @property (nonatomic, strong) DiaryInfo *diary;
 
 @property (nonatomic, strong) NSIndexPath *indexpath;

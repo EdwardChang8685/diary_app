@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self cofigureTableview];
+    [self registerCellWithNib];
     [self configureNavigation: @"Note"];
     [self loadDiariesFromUserDefault];
     [self addObserver];
@@ -48,7 +49,13 @@
     [self saveDiariesToUserDefault];
 }
 
-- (void)configureNavigation:(NSString*) title
+- (void) registerCellWithNib {
+    UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:@"TableViewCell"];
+}
+
+
+- (void) configureNavigation:(NSString*) title
 
 {
     self.title = title;

@@ -7,11 +7,16 @@
 
 #import "DiaryDetailViewController.h"
 
+#define  textFieldPlaceHolder @"Input Note Title Here!"
+#define  textViewPlaceHolder @"Input Content Here!"
+
 @interface DiaryDetailViewController ()
 
 @end
 
 @implementation DiaryDetailViewController
+
+# pragma mark - VC Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -19,8 +24,22 @@
     [self configureNavigation];
     [self setTextField];
     [self setTextView];
+    [self setupPlaceHolder];
     [self showDiaryInfo];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillShowNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillHideNotification object: nil];
+}
+
+# pragma mark - Methods
 
 - (void)configureNavigation {
     
@@ -50,20 +69,15 @@
 
 - (void)completeEdition:(id)sender {
     
-    if(!self.diary) {
-    DiaryInfo *diary = [[DiaryInfo alloc] init];
+    if (self.indexpath) {
+        DiaryInfo *diary = [[DiaryInfo alloc] init];
         diary.title = self.textField.text;
         diary.content = self.textView.text;
-        self.diary = diary;
+        [self.delegate editDiaryInfo: diary andAtRow:self.indexpath];
+        
     } else {
         self.diary.title = self.textField.text;
         self.diary.content = self.textView.text;
-    }
-    
-    if (self.indexpath) {
-        [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
-        
-    } else {
         [self.delegate AddDiaryInfo: self.diary];
     }
     
@@ -91,13 +105,28 @@
     self.textView = [[UITextView alloc]init];
     [self.view addSubview: self.textView];
     self.textView.delegate = self;
-    self.textView.text = @"Input Content Here!";
+    self.textView.font = [UIFont fontWithName:@"System" size:14.0f];
     self.textView.backgroundColor = [UIColor systemGray6Color];
     [self.textView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [[self.textView.topAnchor constraintEqualToAnchor: self.textField.bottomAnchor constant:30] setActive:YES];
     [[self.textView.leadingAnchor constraintEqualToAnchor: self.view.leadingAnchor constant:20] setActive:YES];
     [[self.textView.trailingAnchor constraintEqualToAnchor: self.view.trailingAnchor constant:-20] setActive:YES];
     [[self.textView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
+}
+
+- (void)setupPlaceHolder {
+    if (!self.indexpath) {
+        UILabel *placeHolder = [[UILabel alloc]init];
+        self.placeHolderLabel = placeHolder;
+        placeHolder.text = textViewPlaceHolder;
+        placeHolder.textColor = [UIColor systemGrayColor];
+        [self.textView addSubview: placeHolder];
+        [placeHolder setTranslatesAutoresizingMaskIntoConstraints: NO];
+        [[placeHolder.topAnchor constraintEqualToAnchor: self.textView.topAnchor] setActive: YES];
+        [[placeHolder.leadingAnchor constraintEqualToAnchor:  self.textView.leadingAnchor constant: 8] setActive: YES];
+        [[placeHolder.trailingAnchor constraintEqualToAnchor:  self.textView.trailingAnchor constant: -8] setActive: YES];
+        [[placeHolder.heightAnchor constraintEqualToConstant: 30] setActive: YES];
+    }
 }
 
 - (void)showDiaryInfo {
@@ -107,14 +136,35 @@
     }
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *keyboardInfo = [notification userInfo];
+    CGFloat keyboardHeight = [[keyboardInfo objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    
+    [UIView animateWithDuration: 0.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = keyboardHeight;
+        self.view.frame = frame;
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration: 0.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = 0.0f;
+        self.view.frame = frame;
+    }];
+}
+
 # pragma mark - TableView Delegate
 
-//- (void)textFieldDidEndEditing:(UITextField *)textField{
-//    self.diary.title = textField.text;
-//}
-//
-//- (void)textViewDidChange:(UITextView *)textView {
-//    self.diary.content = textView.text;
-//}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (!textView.text.length) {
+        self.placeHolderLabel.alpha = 1;
+    } else {
+        self.placeHolderLabel.alpha = 0;
+    }
+}
 
 @end
