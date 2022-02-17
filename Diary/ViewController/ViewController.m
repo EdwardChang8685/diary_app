@@ -177,6 +177,7 @@
     newDiaryController.indexpath = indexPath;
     newDiaryController.delegate = self;
     
+    
     [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];

@@ -21,11 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self checkDiaryMode];
     [self configureNavigation];
     [self setTextField];
     [self setTextView];
-    [self setupPlaceHolder];
-    [self showDiaryInfo];
+    [self setPlaceHolder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,6 +40,13 @@
 }
 
 # pragma mark - Methods
+- (void)checkDiaryMode {
+    self.isNewDiary = !self.diary ? YES : NO;
+    if(!self.isNewDiary) {
+        self.textField.text = self.diary.title;
+        self.textView.text = self.diary.content;
+    }
+}
 
 - (void)configureNavigation {
     
@@ -68,17 +75,15 @@
 }
 
 - (void)completeEdition:(id)sender {
-    
-    if (self.indexpath) {
+    if (self.isNewDiary) {
         DiaryInfo *diary = [[DiaryInfo alloc] init];
         diary.title = self.textField.text;
         diary.content = self.textView.text;
-        [self.delegate editDiaryInfo: diary andAtRow:self.indexpath];
-        
+        [self.delegate AddDiaryInfo: diary];
     } else {
         self.diary.title = self.textField.text;
         self.diary.content = self.textView.text;
-        [self.delegate AddDiaryInfo: self.diary];
+        [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
     }
     
     [self dismissViewControllerAnimated: YES completion: NULL];
@@ -90,7 +95,7 @@
     [self.view addSubview: self.textField];
     self.textField.delegate = self;
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
-    self.textField.placeholder = @"Input Note Title Here!";
+    self.textField.placeholder = textFieldPlaceHolder;
     self.textField.text = self.diary.title;
     [self.textField setTranslatesAutoresizingMaskIntoConstraints: NO];
     [[self.textField.topAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.topAnchor constant:30] setActive:YES];
@@ -105,7 +110,7 @@
     self.textView = [[UITextView alloc]init];
     [self.view addSubview: self.textView];
     self.textView.delegate = self;
-    self.textView.font = [UIFont fontWithName:@"System" size:14.0f];
+    self.textView.font = [UIFont fontWithName:@"System" size:16.0f];
     self.textView.backgroundColor = [UIColor systemGray6Color];
     [self.textView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [[self.textView.topAnchor constraintEqualToAnchor: self.textField.bottomAnchor constant:30] setActive:YES];
@@ -114,8 +119,9 @@
     [[self.textView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
 }
 
-- (void)setupPlaceHolder {
-    if (!self.indexpath) {
+- (void)setPlaceHolder {
+    
+    if (self.isNewDiary) {
         UILabel *placeHolder = [[UILabel alloc]init];
         self.placeHolderLabel = placeHolder;
         placeHolder.text = textViewPlaceHolder;
@@ -129,22 +135,18 @@
     }
 }
 
-- (void)showDiaryInfo {
-    if (self.diary) {
-        self.textField.text = self.diary.title;
-        self.textView.text = self.diary.content;
-    }
-}
-
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSDictionary *keyboardInfo = [notification userInfo];
     CGFloat keyboardHeight = [[keyboardInfo objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
     
+    
+    if(self.isEditingTextView) {
     [UIView animateWithDuration: 0.3 animations:^{
         CGRect frame = self.view.frame;
         frame.origin.y = keyboardHeight;
         self.view.frame = frame;
     }];
+    }		
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
@@ -158,8 +160,15 @@
 
 # pragma mark - TableView Delegate
 
-- (void)textViewDidChange:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    self.isEditingTextView = YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    self.isEditingTextView = NO;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
     if (!textView.text.length) {
         self.placeHolderLabel.alpha = 1;
     } else {

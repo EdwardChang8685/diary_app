@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <DiaryDetailVCDelegate> delegate;
 
+@property (nonatomic, assign) BOOL isNewDiary;
+
+@property (nonatomic, assign) BOOL isEditingTextView;
+
 @property (nonatomic, copy, nonnull) void (^editBlock)(DiaryInfo*);
 
 @end
