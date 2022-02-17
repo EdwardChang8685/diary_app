@@ -19,28 +19,38 @@
 # pragma mark - VC Life Cycle
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self checkDiaryMode];
+    [self registerKeyboardNotification];
     [self configureNavigation];
+    [self setScrollView];
     [self setTextField];
     [self setTextView];
+    [self checkDiaryMode];
     [self setPlaceHolder];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
-}
-
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillShowNotification object: nil];
-    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillHideNotification object: nil];
+    
+    [self unregisterKeyboardNotification];
 }
 
 # pragma mark - Methods
+
+- (void)registerKeyboardNotification {
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UITextViewTextDidBeginEditingNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
+}
+
+- (void)unregisterKeyboardNotification {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UITextViewTextDidBeginEditingNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillHideNotification object: nil];
+}
+
 - (void)checkDiaryMode {
+    
     self.isNewDiary = !self.diary ? YES : NO;
     if(!self.isNewDiary) {
         self.textField.text = self.diary.title;
@@ -71,10 +81,12 @@
     
 }
 - (void) dismissVC {
+    
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
 
 - (void)completeEdition:(id)sender {
+    
     if (self.isNewDiary) {
         DiaryInfo *diary = [[DiaryInfo alloc] init];
         diary.title = self.textField.text;
@@ -89,10 +101,17 @@
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
 
+- (void)setScrollView {
+    
+    self.scrollView = [[UIScrollView alloc]initWithFrame: self.view.bounds];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview: self.scrollView];
+}
+
 - (void)setTextField {
     
     self.textField = [[UITextField alloc]init];
-    [self.view addSubview: self.textField];
+    [self.scrollView addSubview: self.textField];
     self.textField.delegate = self;
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
     self.textField.placeholder = textFieldPlaceHolder;
@@ -106,11 +125,11 @@
 }
 
 - (void)setTextView {
-    
+
     self.textView = [[UITextView alloc]init];
-    [self.view addSubview: self.textView];
+    [self.scrollView addSubview: self.textView];
     self.textView.delegate = self;
-    self.textView.font = [UIFont fontWithName:@"System" size:16.0f];
+    self.textView.font = [UIFont systemFontOfSize: 14.0f];
     self.textView.backgroundColor = [UIColor systemGray6Color];
     [self.textView setTranslatesAutoresizingMaskIntoConstraints: NO];
     [[self.textView.topAnchor constraintEqualToAnchor: self.textField.bottomAnchor constant:30] setActive:YES];
@@ -136,36 +155,49 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    NSDictionary *keyboardInfo = [notification userInfo];
-    CGFloat keyboardHeight = [[keyboardInfo objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
-    
-    
-    if(self.isEditingTextView) {
+//    NSDictionary *keyboardInfo = [notification userInfo];
+//    CGFloat keyboardHeight = [[keyboardInfo objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+//    if(self.isEditingTextView) {
     [UIView animateWithDuration: 0.3 animations:^{
         CGRect frame = self.view.frame;
-        frame.origin.y = keyboardHeight;
+//        frame.origin.y = -keyboardHeight;
+        frame.origin.y = -80;
         self.view.frame = frame;
     }];
-    }		
+//    }
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, 80, 0);
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    self.scrollView.scrollEnabled = YES;
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification
-{
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
     [UIView animateWithDuration: 0.3 animations:^{
         CGRect frame = self.view.frame;
         frame.origin.y = 0.0f;
         self.view.frame = frame;
     }];
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, -80, 0);
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    self.scrollView.scrollEnabled = NO;
 }
 
-# pragma mark - TableView Delegate
+# pragma mark - TextFiled & TextView Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.textView becomeFirstResponder];
+    return YES;
+}
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     self.isEditingTextView = YES;
+    NSLog(@"TextView did begin editing");
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     self.isEditingTextView = NO;
+    self.diary.content = textView.text;
+    [textView resignFirstResponder];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
