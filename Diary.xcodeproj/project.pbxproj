@@ -10,11 +10,13 @@
 		5512A06087B74D3A73112942 /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B70098B5E89B8EDEA26626 /* Pods_Diary.framework */; };
 		747C7FE627BC9DC10096CA24 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C7FE427BC9DC10096CA24 /* TableViewCell.m */; };
 		747C7FE727BC9DC10096CA24 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 747C7FE527BC9DC10096CA24 /* TableViewCell.xib */; };
+		747C7FF427BE0A0D0096CA24 /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */; };
+		747C7FF627BE0A610096CA24 /* DiaryDetailControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C7FF527BE0A610096CA24 /* DiaryDetailControllerExtensions.swift */; };
 		74859BA327B2D373006417E4 /* DiaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74859BA227B2D373006417E4 /* DiaryCell.m */; };
 		74859BA527B35A4F006417E4 /* Diary_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 74859BA427B35A4F006417E4 /* Diary_json.json */; };
 		74A6FA8C27B278EC00F3E565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FA8B27B278EC00F3E565 /* AppDelegate.m */; };
 		74A6FA8F27B278EC00F3E565 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FA8E27B278EC00F3E565 /* SceneDelegate.m */; };
-		74A6FA9227B278EC00F3E565 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FA9127B278EC00F3E565 /* ViewController.m */; };
+		74A6FA9227B278EC00F3E565 /* DiaryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FA9127B278EC00F3E565 /* DiaryListController.m */; };
 		74A6FA9527B278EC00F3E565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A6FA9327B278EC00F3E565 /* Main.storyboard */; };
 		74A6FA9727B278ED00F3E565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A6FA9627B278ED00F3E565 /* Assets.xcassets */; };
 		74A6FA9A27B278ED00F3E565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A6FA9827B278ED00F3E565 /* LaunchScreen.storyboard */; };
@@ -52,6 +54,9 @@
 		747C7FE327BC9DC10096CA24 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		747C7FE427BC9DC10096CA24 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		747C7FE527BC9DC10096CA24 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		747C7FF227BE0A0C0096CA24 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
+		747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerButton.swift; sourceTree = "<group>"; };
+		747C7FF527BE0A610096CA24 /* DiaryDetailControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailControllerExtensions.swift; sourceTree = "<group>"; };
 		74859BA127B2D373006417E4 /* DiaryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiaryCell.h; sourceTree = "<group>"; };
 		74859BA227B2D373006417E4 /* DiaryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryCell.m; sourceTree = "<group>"; };
 		74859BA427B35A4F006417E4 /* Diary_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Diary_json.json; sourceTree = "<group>"; };
@@ -60,8 +65,8 @@
 		74A6FA8B27B278EC00F3E565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		74A6FA8D27B278EC00F3E565 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		74A6FA8E27B278EC00F3E565 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		74A6FA9027B278EC00F3E565 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		74A6FA9127B278EC00F3E565 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		74A6FA9027B278EC00F3E565 /* DiaryListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiaryListController.h; sourceTree = "<group>"; };
+		74A6FA9127B278EC00F3E565 /* DiaryListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryListController.m; sourceTree = "<group>"; };
 		74A6FA9427B278EC00F3E565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74A6FA9627B278ED00F3E565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74A6FA9927B278ED00F3E565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,8 +154,8 @@
 		747C7FEB27BC9E2B0096CA24 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				74A6FA9027B278EC00F3E565 /* ViewController.h */,
-				74A6FA9127B278EC00F3E565 /* ViewController.m */,
+				74A6FA9027B278EC00F3E565 /* DiaryListController.h */,
+				74A6FA9127B278EC00F3E565 /* DiaryListController.m */,
 				74D3AA0D27B4C6AD00AE8909 /* DiaryDetailViewController.h */,
 				74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */,
 			);
@@ -182,6 +187,9 @@
 		74A6FA8927B278EC00F3E565 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				747C7FF227BE0A0C0096CA24 /* Diary-Bridging-Header.h */,
+				747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */,
+				747C7FF527BE0A610096CA24 /* DiaryDetailControllerExtensions.swift */,
 				747C7FEB27BC9E2B0096CA24 /* ViewController */,
 				747C7FE927BC9E120096CA24 /* Model */,
 				747C7FE827BC9DF70096CA24 /* View */,
@@ -299,6 +307,7 @@
 				TargetAttributes = {
 					74A6FA8627B278EC00F3E565 = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1320;
 					};
 					74A6FAA127B278ED00F3E565 = {
 						CreatedOnToolsVersion = 13.0;
@@ -472,7 +481,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then \n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\" \nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\" \nfi\nfi";
+			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then \n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\" \nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\" \nfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -481,11 +490,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74A6FA9227B278EC00F3E565 /* ViewController.m in Sources */,
+				74A6FA9227B278EC00F3E565 /* DiaryListController.m in Sources */,
 				74D3AA0F27B4C6AD00AE8909 /* DiaryDetailViewController.m in Sources */,
 				74A6FA8C27B278EC00F3E565 /* AppDelegate.m in Sources */,
 				74A6FA9D27B278ED00F3E565 /* main.m in Sources */,
 				74859BA327B2D373006417E4 /* DiaryCell.m in Sources */,
+				747C7FF427BE0A0D0096CA24 /* ImagePickerButton.swift in Sources */,
+				747C7FF627BE0A610096CA24 /* DiaryDetailControllerExtensions.swift in Sources */,
 				747C7FE627BC9DC10096CA24 /* TableViewCell.m in Sources */,
 				74A6FA8F27B278EC00F3E565 /* SceneDelegate.m in Sources */,
 				74D3AA0C27B4B3D900AE8909 /* DiaryModel.m in Sources */,
@@ -662,6 +673,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CK35Z26D6P;
@@ -681,6 +693,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edward.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/edchang/Desktop/Diary/Diary/Diary-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -691,6 +706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CK35Z26D6P;
@@ -710,6 +726,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edward.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/edchang/Desktop/Diary/Diary/Diary-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -718,6 +736,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6CC92FBA2C11F278FABCF2D0 /* Pods-DiaryTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -741,6 +760,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F5703EE3981CB565D19F57BB /* Pods-DiaryTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -764,6 +784,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E898D28CEEC4689106AAFB4A /* Pods-Diary-DiaryUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -785,6 +806,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13AB0B363A893449F327344D /* Pods-Diary-DiaryUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
     
 @property (nonatomic, strong) UITextView *textView;
 
+@property (nonatomic, strong) UIImageView *imageView;
+
 @property (nonatomic, strong) UILabel *placeHolderLabel;
 
 @property (nonatomic, strong) DiaryInfo *diary;
@@ -34,8 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isNewDiary;
 
 @property (nonatomic, assign) BOOL isEditingTextView;
-
-@property (nonatomic, copy, nonnull) void (^editBlock)(DiaryInfo*);
 
 @end
 

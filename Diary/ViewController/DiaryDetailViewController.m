@@ -6,6 +6,7 @@
 //
 
 #import "DiaryDetailViewController.h"
+#import "Diary-Swift.h"
 
 #define  textFieldPlaceHolder @"Input Note Title Here!"
 #define  textViewPlaceHolder @"Input Content Here!"
@@ -68,8 +69,12 @@
                                    target: self
                                    action: @selector(completeEdition:)];
     
+    UIBarButtonItem *selectImageButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+                                   target: self
+                                   action: @selector(presentImagePicker)];
     
-    self.navigationItem.rightBarButtonItem = doneButton;
+    self.navigationItem.rightBarButtonItems = @[doneButton, selectImageButton];
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @"Back"

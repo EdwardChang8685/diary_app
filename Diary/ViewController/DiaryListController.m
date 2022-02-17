@@ -5,7 +5,7 @@
 //  Created by Ed Chang on 2022/2/8.
 //
 
-#import "ViewController.h"
+#import "DiaryListController.h"
 #import "DiaryModel.h"
 #import "Mantle.h"
 #import "DiaryDetailViewController.h"
@@ -13,11 +13,11 @@
 
 #define userDefaultDiaries @"userDefaultDiaries"
 
-@interface ViewController ()
+@interface DiaryListController ()
 
 @end
 
-@implementation ViewController
+@implementation DiaryListController
 
     UITableView *tableView;
 
