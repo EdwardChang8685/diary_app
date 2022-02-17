@@ -31,6 +31,7 @@
         self.diaryID = [coder decodeObjectOfClass: [NSNumber class] forKey:@"id"];
         self.title = [coder decodeObjectOfClass: [NSString class] forKey:@"title"];
         self.content = [coder decodeObjectOfClass: [NSString class] forKey:@"content"];
+        self.imageData = [coder decodeObjectOfClass: [NSData class] forKey:@"imageData"];
 
     }
     return self;
@@ -40,6 +41,7 @@
     [aCoder encodeObject:self.diaryID forKey:@"id"];
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeObject:self.imageData forKey:@"imageData"];
 }
 
 @end

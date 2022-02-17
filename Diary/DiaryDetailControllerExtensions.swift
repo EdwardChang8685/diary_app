@@ -74,6 +74,9 @@ import UIKit
         
         guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         
+        self.diary.imageData = imageData
+        self.imageView.image = image
+        
         dismiss(animated: true)
     }
 }
@@ -85,5 +88,3 @@ import UIKit
         showPickerController()
     }
 }
-
-

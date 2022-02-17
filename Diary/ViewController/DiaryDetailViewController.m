@@ -27,6 +27,7 @@
     [self setScrollView];
     [self setTextField];
     [self setTextView];
+    [self setImageView];
     [self checkDiaryMode];
     [self setPlaceHolder];
 }
@@ -56,6 +57,8 @@
     if(!self.isNewDiary) {
         self.textField.text = self.diary.title;
         self.textView.text = self.diary.content;
+        UIImage *image = [UIImage imageWithData:self.diary.imageData];
+        self.imageView.image = image;
     }
 }
 
@@ -140,7 +143,18 @@
     [[self.textView.topAnchor constraintEqualToAnchor: self.textField.bottomAnchor constant:30] setActive:YES];
     [[self.textView.leadingAnchor constraintEqualToAnchor: self.view.leadingAnchor constant:20] setActive:YES];
     [[self.textView.trailingAnchor constraintEqualToAnchor: self.view.trailingAnchor constant:-20] setActive:YES];
-    [[self.textView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
+    [[self.textView.heightAnchor constraintEqualToConstant:400 ] setActive:YES];
+}
+
+- (void)setImageView {
+    self.imageView = [[UIImageView alloc]init];
+    [self.scrollView addSubview: self.imageView];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.imageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+    [[self.imageView.topAnchor constraintEqualToAnchor: self.textView.bottomAnchor constant:30] setActive:YES];
+    [[self.imageView.leadingAnchor constraintEqualToAnchor: self.view.leadingAnchor constant:20] setActive:YES];
+    [[self.imageView.trailingAnchor constraintEqualToAnchor: self.view.trailingAnchor constant:-20] setActive:YES];
+    [[self.imageView.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor constant:0] setActive:YES];
 }
 
 - (void)setPlaceHolder {
