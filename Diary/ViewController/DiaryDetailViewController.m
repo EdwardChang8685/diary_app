@@ -11,7 +11,8 @@
 #define  textFieldPlaceHolder @"Input Note Title Here!"
 #define  textViewPlaceHolder @"Input Content Here!"
 
-@interface DiaryDetailViewController ()
+
+@interface DiaryDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @end
 
@@ -23,18 +24,17 @@
     
     [super viewDidLoad];
     //    [self registerKeyboardNotification];
-    [self configureNavigation];
     [self setDiaryDetailView];
     [self setTextField];
     [self setTextView];
     [self setImageView];
     [self checkDiaryMode];
     [self setPlaceHolder];
+    [self configureNavigation];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)dealloc {
-    
     //    [self unregisterKeyboardNotification];
 }
 
@@ -65,7 +65,7 @@
 
 - (void)configureNavigation {
     
-    self.title = @"Add New Note";
+    self.title = self.isNewDiary? @"Add New Note" : @"Edit Note";
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @"Done"
@@ -89,18 +89,18 @@
     self.navigationItem.leftBarButtonItem = backButton;
     
 }
-- (void) dismissVC {
+- (void)dismissVC {
     
     [self dismissViewControllerAnimated: YES completion: NULL];
 }
 
-- (void) completeEdition:(id)sender {
+- (void)completeEdition:(id)sender {
     
     if (self.isNewDiary) {
         DiaryInfo *diary = [[DiaryInfo alloc] init];
         diary.title = self.textField.text;
         diary.content = self.textView.text;
-        [self.delegate AddDiaryInfo: diary];
+        [self.delegate addDiaryInfo: diary];
     } else {
         self.diary.title = self.textField.text;
         self.diary.content = self.textView.text;
@@ -117,7 +117,6 @@
 }
 
 - (void)setTextField {
-    
     self.textField = [[UITextField alloc]init];
     [self.diaryDetailView addSubview: self.textField];
     self.textField.delegate = self;
@@ -133,7 +132,6 @@
 }
 
 - (void)setTextView {
-    
     self.textView = [[UITextView alloc]init];
     [self.diaryDetailView addSubview: self.textView];
     self.textView.delegate = self;
@@ -158,7 +156,6 @@
 }
 
 - (void)setPlaceHolder {
-    
     if (self.isNewDiary) {
         UILabel *placeHolder = [[UILabel alloc]init];
         self.placeHolderLabel = placeHolder;

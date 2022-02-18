@@ -11,12 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DiaryDetailVCDelegate <NSObject>
-- (void) editDiaryInfo:(DiaryInfo*) diary andAtRow:(NSIndexPath*) indexpath;
-- (void) AddDiaryInfo:(DiaryInfo*) diary;
+- (void)editDiaryInfo:(DiaryInfo*) diary andAtRow:(NSIndexPath*) indexpath;
+- (void)addDiaryInfo:(DiaryInfo*) diary;
 @end
 
-@interface DiaryDetailViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate>
-
+@interface DiaryDetailViewController : UITableViewController
+//declaration in this scope for swift extension
 @property (strong, nonatomic) UIView *diaryDetailView;
 
 @property (nonatomic, strong) UITextField *textField;

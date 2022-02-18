@@ -10,10 +10,15 @@
 #import "Mantle.h"
 #import "DiaryDetailViewController.h"
 #import "DiaryCell.h"
+#import "TableViewCell.h"
 
 #define userDefaultDiaries @"userDefaultDiaries"
 
-@interface DiaryListController ()
+@interface DiaryListController() <UITableViewDelegate, UITableViewDataSource, DiaryDetailVCDelegate>
+
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray<DiaryInfo *> *diaries;
 
 @end
 
@@ -41,36 +46,30 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context
-{
+                       context:(void *)context {
     NSLog(@"Diaries did edited");
     
     [self.tableView reloadData];
     [self saveDiariesToUserDefault];
 }
 
-- (void) registerCellWithNib {
-    UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:@"TableViewCell"];
+- (void)registerCellWithNib {
+    UINib *nib = [UINib nibWithNibName:TableViewCell.identifier bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:TableViewCell.identifier];
 }
 
-
-- (void) configureNavigation:(NSString*) title
-
-{
+- (void)configureNavigation:(NSString*) title {
     self.title = title;
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
                                    target: self
-                                   action: @selector(createNewDiary:)];
+                                   action: @selector(createNewDiary)];
     
     self.navigationItem.rightBarButtonItem = editButton;
 }
 
-
-- (void)createNewDiary:(id)sender
-{
+- (void)createNewDiary {
     DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController: newDiaryController];
     newDiaryController.delegate = self;
@@ -80,17 +79,14 @@
                      completion: nil];
 }
 
-
-- (void)cofigureTableview
-{
+- (void)cofigureTableview {
     self.tableView = [[UITableView alloc] initWithFrame: self.view.bounds style: UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview: self.tableView];
 }
 
-- (void)loadJsonData
-{
+- (void)loadJsonData {
     NSString *filePath = [[NSBundle mainBundle] pathForResource: @"Diary_json" ofType: @"json"];
     // Retrieve local JSON file called example.json
     
@@ -106,24 +102,22 @@
     
     if ([jsonObject isKindOfClass: [NSDictionary class]]) {
         NSDictionary *dict = (NSDictionary *)jsonObject;
-        self.dict = dict;
-        [self packageJsonToDataModel];
+        [self packageJsonToDataModel:dict];
     } else {
         NSLog(@"Error while Deserializing the JSON data.");
     }
 }
 
-- (void) packageJsonToDataModel {
+- (void)packageJsonToDataModel:(NSDictionary *)dict {
     NSError *error;
     Diary *model = [MTLJSONAdapter modelOfClass: Diary.class
-                             fromJSONDictionary: self.dict
+                             fromJSONDictionary: dict
                                           error: &error];
     
     self.diaries = model.diaries;
 }
 
 - (void)loadDiariesFromUserDefault {
-    
     NSData *diariesData = [[NSUserDefaults standardUserDefaults] objectForKey: userDefaultDiaries];
     
     if (diariesData) {
@@ -143,7 +137,7 @@
     }
 }
 
-- (void) saveDiariesToUserDefault {
+- (void)saveDiariesToUserDefault {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSError *archivedError = nil;
     NSData *archiveData = [NSKeyedArchiver archivedDataWithRootObject: self.diaries
@@ -156,12 +150,12 @@
 
 # pragma mark - DiaryDetailVCDelegate
 
-- (void) editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
+- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
     [[self mutableArrayValueForKey:@"diaries"] replaceObjectAtIndex:indexpath.row withObject:diary];
     self.diaries[indexpath.row] = diary;
 }
 
-- (void) AddDiaryInfo:(DiaryInfo*) diary {
+- (void)addDiaryInfo:(DiaryInfo*) diary {
     [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
 }
 
@@ -200,12 +194,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"cell";
     
-    DiaryCell *cell = (DiaryCell *) [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
+    DiaryCell *cell = (DiaryCell *) [tableView dequeueReusableCellWithIdentifier: DiaryCell.cellIdentifier];
     
     if (cell == nil) {
-        cell = [[DiaryCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: CellIdentifier];
+        cell = [[DiaryCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: DiaryCell.cellIdentifier];
     }
     
     [cell configureCell: self.diaries[indexPath.row]];

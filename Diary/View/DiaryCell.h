@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import"DiaryModel.h"
+#import "DiaryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) UIImageView *diaryImageView;
 
 - (void)configureCell: (DiaryInfo*) model;
+
++ (NSString *) cellIdentifier;
 
 @end
 

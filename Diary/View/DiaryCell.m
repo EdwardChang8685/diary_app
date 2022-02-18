@@ -8,6 +8,7 @@
 #import "DiaryCell.h"
 #import "DiaryModel.h"
 
+
 @implementation DiaryCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -45,6 +46,10 @@
         [[self.contentLabel.bottomAnchor constraintLessThanOrEqualToAnchor: self.contentView.bottomAnchor constant:-8] setActive:YES];
     }
     return self;
+}
+
++ (NSString *)cellIdentifier {
+    return [self description];
 }
 
 - (void)configureCell: (DiaryInfo*) model {

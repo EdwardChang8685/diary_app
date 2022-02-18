@@ -9,12 +9,6 @@
 #import "DiaryDetailViewController.h"
 #import "DiaryModel.h"
 
-@interface DiaryListController : UIViewController <UITableViewDelegate, UITableViewDataSource, DiaryDetailVCDelegate>
-
-@property (strong, nonatomic) UITableView *tableView;
-
-@property (strong, nonatomic) NSMutableArray<DiaryInfo *> *diaries;
-
-@property (strong, nonatomic) NSDictionary *dict;
+@interface DiaryListController : UIViewController
 
 @end
