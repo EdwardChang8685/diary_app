@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) AddDiaryInfo:(DiaryInfo*) diary;
 @end
 
-@interface DiaryDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface DiaryDetailViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate>
 
-@property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) UIView *diaryDetailView;
 
 @property (nonatomic, strong) UITextField *textField;
     

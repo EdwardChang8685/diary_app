@@ -25,8 +25,9 @@
         
         [self.diaryImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
         self.diaryImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [[self.diaryImageView.topAnchor constraintEqualToAnchor: self.contentView.topAnchor constant:8] setActive:YES];
+        [[self.diaryImageView.topAnchor constraintGreaterThanOrEqualToAnchor: self.contentView.topAnchor constant:8] setActive:YES];
         [[self.diaryImageView.bottomAnchor constraintLessThanOrEqualToAnchor: self.contentView.bottomAnchor constant:-8] setActive:YES];
+        [[self.diaryImageView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor] setActive:YES];
         [[self.diaryImageView.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:-8] setActive:YES];
         [[self.diaryImageView.heightAnchor constraintEqualToConstant: 80] setActive:YES];
         [[self.diaryImageView.widthAnchor constraintEqualToAnchor:self.diaryImageView.heightAnchor multiplier:1] setActive:YES];
@@ -50,7 +51,6 @@
     self.titleLabel.text = model.title;
     self.contentLabel.numberOfLines = 3;
     self.contentLabel.text = model.content;
-    NSLog(@"%@",model.imageData);
     UIImage *image = [UIImage imageWithData:model.imageData];
     self.diaryImageView.image = image;
 }
