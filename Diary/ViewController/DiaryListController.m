@@ -156,7 +156,7 @@
 
 # pragma mark - DiaryDetailVCDelegate
 
-- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
+- (void) editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
     [[self mutableArrayValueForKey:@"diaries"] replaceObjectAtIndex:indexpath.row withObject:diary];
     self.diaries[indexpath.row] = diary;
 }
@@ -181,6 +181,8 @@
     [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
