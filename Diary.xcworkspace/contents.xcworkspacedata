@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.m">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.m">
+   </FileRef>
+   <FileRef
       location = "group:Diary.xcodeproj">
    </FileRef>
    <FileRef

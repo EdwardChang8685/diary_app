@@ -6,3 +6,4 @@
 #import "DiaryListController.h"
 #import "DiaryModel.h"
 #import "DiaryCell.h"
+#import "DiaryInfoEntity+CoreDataProperties.h"

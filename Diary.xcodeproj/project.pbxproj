@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5512A06087B74D3A73112942 /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B70098B5E89B8EDEA26626 /* Pods_Diary.framework */; };
+		740735EB27C33E1900DAF5CC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 740735E927C33E1900DAF5CC /* Model.xcdatamodeld */; };
 		747C7FE627BC9DC10096CA24 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C7FE427BC9DC10096CA24 /* TableViewCell.m */; };
 		747C7FE727BC9DC10096CA24 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 747C7FE527BC9DC10096CA24 /* TableViewCell.xib */; };
 		747C7FF427BE0A0D0096CA24 /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */; };
@@ -26,6 +27,8 @@
 		74A6FAB327B278ED00F3E565 /* DiaryUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FAB227B278ED00F3E565 /* DiaryUITestsLaunchTests.m */; };
 		74D3AA0C27B4B3D900AE8909 /* DiaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3AA0B27B4B3D900AE8909 /* DiaryModel.m */; };
 		74D3AA0F27B4C6AD00AE8909 /* DiaryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */; };
+		74D4BC1227C3417C00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */; };
+		74D4BC1327C3417C00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */; };
 		77795D9EDF7D52920E42EDFE /* Pods_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFEAAC001B810D2B567E140 /* Pods_DiaryTests.framework */; };
 		97D1ABD37486AED40079625F /* Pods_Diary_DiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D30EA295AB6993A6EA6778 /* Pods_Diary_DiaryUITests.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +54,7 @@
 		13AB0B363A893449F327344D /* Pods-Diary-DiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary-DiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-Diary-DiaryUITests/Pods-Diary-DiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2160961266BA0B117D704FC2 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC92FBA2C11F278FABCF2D0 /* Pods-DiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-DiaryTests/Pods-DiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		740735EA27C33E1900DAF5CC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		747C7FE327BC9DC10096CA24 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		747C7FE427BC9DC10096CA24 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		747C7FE527BC9DC10096CA24 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -81,6 +85,10 @@
 		74D3AA0B27B4B3D900AE8909 /* DiaryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryModel.m; sourceTree = "<group>"; };
 		74D3AA0D27B4C6AD00AE8909 /* DiaryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiaryDetailViewController.h; sourceTree = "<group>"; };
 		74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryDetailViewController.m; sourceTree = "<group>"; };
+		74D4BC0E27C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DiaryInfoEntity+CoreDataProperties.h"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		74D4BC0F27C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DiaryInfoEntity+CoreDataClass.h"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DiaryInfoEntity+CoreDataClass.m"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DiaryInfoEntity+CoreDataProperties.m"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.m"; sourceTree = "<absolute>"; };
 		B6B70098B5E89B8EDEA26626 /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC982DCA522D8FBA8783781C /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		CCFEAAC001B810D2B567E140 /* Pods_DiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +136,13 @@
 				F5703EE3981CB565D19F57BB /* Pods-DiaryTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		740735F227C3409200DAF5CC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		747C7FE827BC9DF70096CA24 /* View */ = {
@@ -187,6 +202,11 @@
 		74A6FA8927B278EC00F3E565 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				74D4BC0E27C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.h */,
+				74D4BC0F27C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.h */,
+				74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */,
+				74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */,
+				740735F227C3409200DAF5CC /* CoreData */,
 				747C7FF227BE0A0C0096CA24 /* Diary-Bridging-Header.h */,
 				747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */,
 				747C7FF527BE0A610096CA24 /* DiaryDetailControllerExtensions.swift */,
@@ -195,6 +215,7 @@
 				747C7FE827BC9DF70096CA24 /* View */,
 				74A6FA8A27B278EC00F3E565 /* AppDelegate.h */,
 				74A6FA8B27B278EC00F3E565 /* AppDelegate.m */,
+				740735E927C33E1900DAF5CC /* Model.xcdatamodeld */,
 				74A6FA8D27B278EC00F3E565 /* SceneDelegate.h */,
 				74A6FA8E27B278EC00F3E565 /* SceneDelegate.m */,
 				74A6FA9327B278EC00F3E565 /* Main.storyboard */,
@@ -490,15 +511,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74D4BC1227C3417C00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */,
 				74A6FA9227B278EC00F3E565 /* DiaryListController.m in Sources */,
 				74D3AA0F27B4C6AD00AE8909 /* DiaryDetailViewController.m in Sources */,
 				74A6FA8C27B278EC00F3E565 /* AppDelegate.m in Sources */,
 				74A6FA9D27B278ED00F3E565 /* main.m in Sources */,
 				74859BA327B2D373006417E4 /* DiaryCell.m in Sources */,
 				747C7FF427BE0A0D0096CA24 /* ImagePickerButton.swift in Sources */,
+				74D4BC1327C3417C00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */,
 				747C7FF627BE0A610096CA24 /* DiaryDetailControllerExtensions.swift in Sources */,
 				747C7FE627BC9DC10096CA24 /* TableViewCell.m in Sources */,
 				74A6FA8F27B278EC00F3E565 /* SceneDelegate.m in Sources */,
+				740735EB27C33E1900DAF5CC /* Model.xcdatamodeld in Sources */,
 				74D3AA0C27B4B3D900AE8909 /* DiaryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,6 +888,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		740735E927C33E1900DAF5CC /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				740735EA27C33E1900DAF5CC /* Model.xcdatamodel */,
+			);
+			currentVersion = 740735EA27C33E1900DAF5CC /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 74A6FA7F27B278EC00F3E565 /* Project object */;
 }

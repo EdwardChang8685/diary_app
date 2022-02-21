@@ -7,6 +7,7 @@
 
 #import "DiaryDetailViewController.h"
 #import "Diary-Swift.h"
+#import "DiaryInfoEntity+CoreDataProperties.h"
 
 #define  textFieldPlaceHolder @"Input Note Title Here!"
 #define  textViewPlaceHolder @"Input Content Here!"

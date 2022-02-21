@@ -11,6 +11,7 @@
 #import "DiaryDetailViewController.h"
 #import "DiaryCell.h"
 #import "TableViewCell.h"
+#import "DiaryInfoEntity+CoreDataProperties.h"
 
 #define userDefaultDiaries @"userDefaultDiaries"
 
