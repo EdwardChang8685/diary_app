@@ -52,7 +52,7 @@
     return [self description];
 }
 
-- (void)configureCell: (DiaryInfo*) model {
+- (void)configureCell: (DiaryInfoEntity*) model {
     self.titleLabel.text = model.title;
     self.contentLabel.numberOfLines = 3;
     self.contentLabel.text = model.content;

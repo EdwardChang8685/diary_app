@@ -1,6 +1,6 @@
 //
-//  DiaryInfoCoreData+CoreDataClass.m
-//  
+//  DiaryInfoEntity+CoreDataClass.m
+//  Diary
 //
 //  Created by Ed Chang on 2022/2/21.
 //

@@ -6,9 +6,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DiaryInfoEntity+CoreDataProperties.h"
+#import "DiaryInfoEntity+CoreDataClass.h"
 #import <MagicalRecord.h>
-#import <MagicalRecord/MagicalRecord+ShorthandMethods.h>
 
 @interface AppDelegate ()
 
@@ -18,20 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Model.sqlite"];
-//    [MagicalRecord enableShorthandMethods];
-    
-    DiaryInfoEntity* diaryInfo = [DiaryInfoEntity MR_createEntity];
-    
-    NSManagedObjectContext *defaultContext = [NSManagedObjectContext MR_defaultContext];
-    
-    [defaultContext MR_saveToPersistentStoreAndWait];
-    
-    NSArray<DiaryInfoEntity *> *resultArray = [DiaryInfoEntity MR_findAll];
-    
+    // Override point for customization after application launch.®
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"DiaryInfo"];
     return YES;
-    
 }
 
 
@@ -55,8 +43,6 @@
     
     // Clean up MagicalRecord
     [MagicalRecord cleanUp];
-
 }
-
 
 @end

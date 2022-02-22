@@ -11,7 +11,8 @@
 #import "DiaryDetailViewController.h"
 #import "DiaryCell.h"
 #import "TableViewCell.h"
-#import "DiaryInfoEntity+CoreDataProperties.h"
+#import "DiaryInfoEntity+CoreDataClass.h"
+#import <MagicalRecord.h>
 
 #define userDefaultDiaries @"userDefaultDiaries"
 
@@ -19,21 +20,34 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray<DiaryInfo *> *diaries;
+@property (strong, nonatomic) NSMutableArray *diaries;
 
 @end
 
 @implementation DiaryListController
 
-    UITableView *tableView;
+# pragma mark - VC Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self cofigureTableview];
     [self registerCellWithNib];
     [self configureNavigation: @"Note"];
-    [self loadDiariesFromUserDefault];
+//    [self loadDiariesFromUserDefault];
+    [self fetchDiariesFromCoreData];
     [self addObserver];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
+}
+
+# pragma mark - Methods
+
+- (void)fetchDiariesFromCoreData {
+    NSArray<DiaryInfoEntity *> *resultArray = [[DiaryInfoEntity MR_findAll] mutableCopy];
+    self.diaries = [NSMutableArray arrayWithArray:resultArray];
 }
 
 - (void)addObserver {
@@ -49,14 +63,13 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     NSLog(@"Diaries did edited");
-    
     [self.tableView reloadData];
     [self saveDiariesToUserDefault];
 }
 
 - (void)registerCellWithNib {
     UINib *nib = [UINib nibWithNibName:TableViewCell.identifier bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:TableViewCell.identifier];
+    [self.tableView registerNib:nib forCellReuseIdentifier:TableViewCell.identifier];
 }
 
 - (void)configureNavigation:(NSString*) title {
@@ -74,7 +87,6 @@
     DiaryDetailViewController *newDiaryController = [[DiaryDetailViewController alloc] init];
     UINavigationController *navConrtroller = [[UINavigationController alloc] initWithRootViewController: newDiaryController];
     newDiaryController.delegate = self;
-    
     [self presentViewController: navConrtroller
                        animated: YES
                      completion: nil];
@@ -127,7 +139,9 @@
         NSMutableArray<DiaryInfo*> *unarchiveArray = [NSKeyedUnarchiver unarchivedObjectOfClasses: set
                                                                                          fromData: diariesData
                                                                                             error: &unarchivedError];
-        self.diaries = unarchiveArray;
+//        NSArray *unarchiveArray = [NSKeyedUnarchiver unarchivedArrayOfObjectsOfClass:[DiaryInfo class]                                          fromData: diariesData
+//                                                                                            error: &unarchivedError];
+        self.diaries = [NSMutableArray arrayWithArray:unarchiveArray];
         NSLog(@"Load data From UserDefault");
         NSLog(@"unarchive error: %@",unarchivedError);
         
@@ -151,12 +165,12 @@
 
 # pragma mark - DiaryDetailVCDelegate
 
-- (void)editDiaryInfo:(DiaryInfo *)diary andAtRow:(NSIndexPath *)indexpath {
+- (void)editDiaryInfo:(NSObject *)diary andAtRow:(NSIndexPath *)indexpath {
     [[self mutableArrayValueForKey:@"diaries"] replaceObjectAtIndex:indexpath.row withObject:diary];
-    self.diaries[indexpath.row] = diary;
+//    self.diaries[indexpath.row] = diary;
 }
 
-- (void)addDiaryInfo:(DiaryInfo*) diary {
+- (void)addDiaryInfo:(NSObject *) diary {
     [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
 }
 
@@ -214,8 +228,16 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        DiaryInfoEntity *diaryToRemove = self.diaries[indexPath.row];
         [[self mutableArrayValueForKey:@"diaries"] removeObjectAtIndex: indexPath.row];
+        [diaryToRemove MR_deleteEntity];
+        [self saveContext];
     }
+}
+
+- (void)saveContext {
+    NSManagedObjectContext *defaultContext = [NSManagedObjectContext MR_defaultContext];
+    [defaultContext MR_saveToPersistentStoreAndWait];
 }
 
 @end

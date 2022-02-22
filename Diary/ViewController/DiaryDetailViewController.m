@@ -7,7 +7,8 @@
 
 #import "DiaryDetailViewController.h"
 #import "Diary-Swift.h"
-#import "DiaryInfoEntity+CoreDataProperties.h"
+#import "DiaryInfoEntity+CoreDataClass.h"
+#import <MagicalRecord.h>
 
 #define  textFieldPlaceHolder @"Input Note Title Here!"
 #define  textViewPlaceHolder @"Input Content Here!"
@@ -96,23 +97,43 @@
 }
 
 - (void)completeEdition:(id)sender {
-    
     if (self.isNewDiary) {
-        DiaryInfo *diary = [[DiaryInfo alloc] init];
-        diary.title = self.textField.text;
-        diary.content = self.textView.text;
-        [self.delegate addDiaryInfo: diary];
+//        [self newDiaryToUserDefaults];
+        [self newDiaryToCoreData];
     } else {
         self.diary.title = self.textField.text;
         self.diary.content = self.textView.text;
         [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
     }
-    
+    [self saveContext];
     [self dismissVC];
 }
 
+- (void)newDiaryToUserDefaults {
+    DiaryInfo *diary = [[DiaryInfo alloc] init];
+    diary.title = self.textField.text;
+    diary.content = self.textView.text;
+    diary.imageData = (NSData *)UIImageJPEGRepresentation(self.imageView.image, 0.1);
+    [self.delegate addDiaryInfo: diary];
+}
+
+- (void)newDiaryToCoreData {
+    DiaryInfoEntity *diary = [DiaryInfoEntity MR_createEntity];
+    diary.title = self.textField.text;
+    diary.content = self.textView.text;
+    diary.imageData = (NSData *)UIImageJPEGRepresentation(self.imageView.image, 0.1);
+    [self.delegate addDiaryInfo: diary];
+}
+
+- (void)editDiaryToCoreData {
+}
+
+- (void)saveContext {
+    NSManagedObjectContext *defaultContext = [NSManagedObjectContext MR_defaultContext];
+    [defaultContext MR_saveToPersistentStoreAndWait];
+}
+
 - (void)setDiaryDetailView {
-    
     self.diaryDetailView = [[UIView alloc]init];
     self.diaryDetailView.backgroundColor = [UIColor whiteColor];
 }

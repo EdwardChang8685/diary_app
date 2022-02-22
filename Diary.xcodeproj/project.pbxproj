@@ -27,8 +27,8 @@
 		74A6FAB327B278ED00F3E565 /* DiaryUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A6FAB227B278ED00F3E565 /* DiaryUITestsLaunchTests.m */; };
 		74D3AA0C27B4B3D900AE8909 /* DiaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3AA0B27B4B3D900AE8909 /* DiaryModel.m */; };
 		74D3AA0F27B4C6AD00AE8909 /* DiaryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */; };
-		74D4BC1227C3417C00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */; };
-		74D4BC1327C3417C00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */; };
+		74D4BC1E27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1C27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.m */; };
+		74D4BC1F27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D4BC1D27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.m */; };
 		77795D9EDF7D52920E42EDFE /* Pods_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFEAAC001B810D2B567E140 /* Pods_DiaryTests.framework */; };
 		97D1ABD37486AED40079625F /* Pods_Diary_DiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D30EA295AB6993A6EA6778 /* Pods_Diary_DiaryUITests.framework */; };
 /* End PBXBuildFile section */
@@ -85,10 +85,10 @@
 		74D3AA0B27B4B3D900AE8909 /* DiaryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryModel.m; sourceTree = "<group>"; };
 		74D3AA0D27B4C6AD00AE8909 /* DiaryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiaryDetailViewController.h; sourceTree = "<group>"; };
 		74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryDetailViewController.m; sourceTree = "<group>"; };
-		74D4BC0E27C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DiaryInfoEntity+CoreDataProperties.h"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		74D4BC0F27C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DiaryInfoEntity+CoreDataClass.h"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DiaryInfoEntity+CoreDataClass.m"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataClass.m"; sourceTree = "<absolute>"; };
-		74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DiaryInfoEntity+CoreDataProperties.m"; path = "/Users/edchang/Desktop/Diary/Diary/DiaryInfoEntity+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		74D4BC1A27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiaryInfoEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74D4BC1B27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiaryInfoEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		74D4BC1C27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DiaryInfoEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		74D4BC1D27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DiaryInfoEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		B6B70098B5E89B8EDEA26626 /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC982DCA522D8FBA8783781C /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		CCFEAAC001B810D2B567E140 /* Pods_DiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +141,10 @@
 		740735F227C3409200DAF5CC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				74D4BC1A27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.h */,
+				74D4BC1B27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.h */,
+				74D4BC1C27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.m */,
+				74D4BC1D27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -202,14 +206,10 @@
 		74A6FA8927B278EC00F3E565 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				74D4BC0E27C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.h */,
-				74D4BC0F27C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.h */,
-				74D4BC1027C3417B00803A18 /* DiaryInfoEntity+CoreDataClass.m */,
-				74D4BC1127C3417B00803A18 /* DiaryInfoEntity+CoreDataProperties.m */,
-				740735F227C3409200DAF5CC /* CoreData */,
 				747C7FF227BE0A0C0096CA24 /* Diary-Bridging-Header.h */,
 				747C7FF327BE0A0D0096CA24 /* ImagePickerButton.swift */,
 				747C7FF527BE0A610096CA24 /* DiaryDetailControllerExtensions.swift */,
+				740735F227C3409200DAF5CC /* CoreData */,
 				747C7FEB27BC9E2B0096CA24 /* ViewController */,
 				747C7FE927BC9E120096CA24 /* Model */,
 				747C7FE827BC9DF70096CA24 /* View */,
@@ -511,14 +511,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74D4BC1227C3417C00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */,
+				74D4BC1E27C3E87F00803A18 /* DiaryInfoEntity+CoreDataClass.m in Sources */,
 				74A6FA9227B278EC00F3E565 /* DiaryListController.m in Sources */,
 				74D3AA0F27B4C6AD00AE8909 /* DiaryDetailViewController.m in Sources */,
 				74A6FA8C27B278EC00F3E565 /* AppDelegate.m in Sources */,
+				74D4BC1F27C3E87F00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */,
 				74A6FA9D27B278ED00F3E565 /* main.m in Sources */,
 				74859BA327B2D373006417E4 /* DiaryCell.m in Sources */,
 				747C7FF427BE0A0D0096CA24 /* ImagePickerButton.swift in Sources */,
-				74D4BC1327C3417C00803A18 /* DiaryInfoEntity+CoreDataProperties.m in Sources */,
 				747C7FF627BE0A610096CA24 /* DiaryDetailControllerExtensions.swift in Sources */,
 				747C7FE627BC9DC10096CA24 /* TableViewCell.m in Sources */,
 				74A6FA8F27B278EC00F3E565 /* SceneDelegate.m in Sources */,
@@ -701,6 +701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CK35Z26D6P;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Diary;
@@ -734,6 +735,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CK35Z26D6P;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Diary;

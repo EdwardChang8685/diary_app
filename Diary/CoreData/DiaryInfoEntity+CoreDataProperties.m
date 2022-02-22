@@ -1,6 +1,6 @@
 //
-//  DiaryInfoCoreData+CoreDataProperties.m
-//  
+//  DiaryInfoEntity+CoreDataProperties.m
+//  Diary
 //
 //  Created by Ed Chang on 2022/2/21.
 //
@@ -11,12 +11,12 @@
 @implementation DiaryInfoEntity (CoreDataProperties)
 
 + (NSFetchRequest<DiaryInfoEntity *> *)fetchRequest {
-	return [NSFetchRequest fetchRequestWithEntityName:@"DiaryInfoCoreData"];
+	return [NSFetchRequest fetchRequestWithEntityName:@"DiaryInfoEntity"];
 }
 
 @dynamic content;
-@dynamic id;
 @dynamic imageData;
 @dynamic title;
+@dynamic id;
 
 @end

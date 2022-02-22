@@ -1,6 +1,6 @@
 //
-//  DiaryInfoCoreData+CoreDataProperties.h
-//  
+//  DiaryInfoEntity+CoreDataProperties.h
+//  Diary
 //
 //  Created by Ed Chang on 2022/2/21.
 //
@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<DiaryInfoEntity *> *)fetchRequest NS_SWIFT_NAME(fetchRequest());
 
 @property (nullable, nonatomic, copy) NSString *content;
-@property (nonatomic) int64_t id;
 @property (nullable, nonatomic, retain) NSData *imageData;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nonatomic) int64_t id;
 
 @end
 

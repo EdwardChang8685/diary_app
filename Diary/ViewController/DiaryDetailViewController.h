@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DiaryModel.h"
+#import "DiaryInfoEntity+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DiaryDetailVCDelegate <NSObject>
-- (void)editDiaryInfo:(DiaryInfo*) diary andAtRow:(NSIndexPath*) indexpath;
-- (void)addDiaryInfo:(DiaryInfo*) diary;
+- (void)editDiaryInfo:(NSObject *) diary andAtRow:(NSIndexPath*) indexpath;
+- (void)addDiaryInfo:(NSObject *) diary;
 @end
 
 @interface DiaryDetailViewController : UITableViewController
