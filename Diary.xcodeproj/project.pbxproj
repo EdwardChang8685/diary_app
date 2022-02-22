@@ -175,6 +175,7 @@
 			children = (
 				74A6FA9027B278EC00F3E565 /* DiaryListController.h */,
 				74A6FA9127B278EC00F3E565 /* DiaryListController.m */,
+				74DDF35827C4E0D3005EF35B /* New Group */,
 				74D3AA0D27B4C6AD00AE8909 /* DiaryDetailViewController.h */,
 				74D3AA0E27B4C6AD00AE8909 /* DiaryDetailViewController.m */,
 			);
@@ -243,6 +244,13 @@
 				74A6FAB227B278ED00F3E565 /* DiaryUITestsLaunchTests.m */,
 			);
 			path = DiaryUITests;
+			sourceTree = "<group>";
+		};
+		74DDF35827C4E0D3005EF35B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		76F69952B79CD354C557C830 /* Frameworks */ = {
@@ -718,7 +726,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edward.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/edchang/Desktop/Diary/Diary/Diary-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Diary-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -752,7 +760,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edward.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/edchang/Desktop/Diary/Diary/Diary-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Diary-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -46,7 +46,7 @@
 # pragma mark - Methods
 
 - (void)fetchDiariesFromCoreData {
-    NSArray<DiaryInfoEntity *> *resultArray = [[DiaryInfoEntity MR_findAll] mutableCopy];
+    NSArray<DiaryInfoEntity *> *resultArray = [DiaryInfoEntity MR_findAll];
     self.diaries = [NSMutableArray arrayWithArray:resultArray];
 }
 
@@ -64,7 +64,7 @@
                        context:(void *)context {
     NSLog(@"Diaries did edited");
     [self.tableView reloadData];
-    [self saveDiariesToUserDefault];
+//    [self saveDiariesToUserDefault];
 }
 
 - (void)registerCellWithNib {
@@ -167,13 +167,11 @@
 
 - (void)editDiaryInfo:(NSObject *)diary andAtRow:(NSIndexPath *)indexpath {
     [[self mutableArrayValueForKey:@"diaries"] replaceObjectAtIndex:indexpath.row withObject:diary];
-//    self.diaries[indexpath.row] = diary;
 }
 
 - (void)addDiaryInfo:(NSObject *) diary {
     [[self mutableArrayValueForKey:@"diaries"] addObject:diary];
 }
-
 
 # pragma mark - TableView Delegate
 
