@@ -2,7 +2,7 @@
 //  DiaryInfoEntity+CoreDataClass.h
 //  Diary
 //
-//  Created by Ed Chang on 2022/2/21.
+//  Created by Ed Chang on 2022/2/23.
 //
 //
 

@@ -2,7 +2,7 @@
 //  DiaryInfoEntity+CoreDataProperties.m
 //  Diary
 //
-//  Created by Ed Chang on 2022/2/21.
+//  Created by Ed Chang on 2022/2/23.
 //
 //
 
@@ -15,8 +15,10 @@
 }
 
 @dynamic content;
+@dynamic diaryId;
 @dynamic imageData;
 @dynamic title;
-@dynamic id;
+@dynamic createdTime;
+@dynamic updatedTime;
 
 @end

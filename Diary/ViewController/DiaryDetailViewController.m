@@ -103,6 +103,7 @@
     } else {
         self.diary.title = self.textField.text;
         self.diary.content = self.textView.text;
+        self.diary.updatedTime = [NSDate date];
         [self.delegate editDiaryInfo: self.diary andAtRow:self.indexpath];
     }
     [self saveContext];
@@ -114,6 +115,8 @@
     diary.title = self.textField.text;
     diary.content = self.textView.text;
     diary.imageData = (NSData *)UIImageJPEGRepresentation(self.imageView.image, 0.1);
+    diary.createdTime = [NSDate date];
+    diary.updatedTime = [NSDate date];
     [self.delegate addDiaryInfo: diary];
 }
 

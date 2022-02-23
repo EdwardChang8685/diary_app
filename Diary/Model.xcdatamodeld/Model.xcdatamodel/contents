@@ -2,11 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DiaryInfoEntity" representedClassName="DiaryInfoEntity" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="diaryId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="updatedTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="DiaryInfoEntity" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="DiaryInfoEntity" positionX="-54" positionY="-9" width="128" height="119"/>
     </elements>
 </model>

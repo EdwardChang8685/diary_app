@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, nullable) NSData *imageData;
+@property (nonatomic, nullable) NSDate *createdTime;
+@property (nonatomic, nullable) NSDate *updatedTime;
 
 @end
 

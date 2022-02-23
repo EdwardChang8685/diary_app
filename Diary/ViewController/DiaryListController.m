@@ -46,7 +46,7 @@
 # pragma mark - Methods
 
 - (void)fetchDiariesFromCoreData {
-    NSArray<DiaryInfoEntity *> *resultArray = [DiaryInfoEntity MR_findAll];
+    NSArray<DiaryInfoEntity *> *resultArray = [DiaryInfoEntity MR_findAllSortedBy:@"updatedTime" ascending:NO];
     self.diaries = [NSMutableArray arrayWithArray:resultArray];
 }
 
@@ -63,6 +63,8 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     NSLog(@"Diaries did edited");
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"updatedTime" ascending:NO];
+    [self.diaries sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [self.tableView reloadData];
 //    [self saveDiariesToUserDefault];
 }
